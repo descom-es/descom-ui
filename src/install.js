@@ -1,10 +1,14 @@
-import HelloWorld from './components/HelloWorld.vue'
+import DescomUiTest from './components/DescomUiTest.vue'
+import UiButton from './components/Ui/Button.vue'
+import UiInput from './components/Ui/Input.vue'
 
 // Declare install function executed by Vue.use()
 export function install(Vue) {
   if (install.installed) return
   install.installed = true
-  Vue.component('HelloWorldSimple', HelloWorld)
+  Vue.component('DescomUiTest', DescomUiTest)
+  Vue.component('UiButton', UiButton)
+  Vue.component('UiInput', UiInput)
 }
 
 // Create module definition for Vue.use()
@@ -24,4 +28,4 @@ if (GlobalVue) {
 }
 
 // To allow use as module (npm/webpack/etc.) export component
-export default HelloWorld
+export default {DescomUiTest, UiButton, UiInput}
