@@ -1,10 +1,29 @@
 {
   "name": "descom-ui",
+  "description": "vuejs ui components",
+  "author": {
+    "name": "Victor Garcia",
+    "email": "victor@descom.es"
+  },
+  "repository": "https://github.com/descom-es/descom-ui",
+  "bugs": "https://github.com/descom-es/descom-ui/issues",
+  "keywords": [
+    "ui",
+    "component",
+    "vue",
+    "nuxt"
+  ],
+  "license": "MIT",
   "version": "0.1.0",
-  "private": true,
+  "main": ".dist/descom-ui.common.js",
+  "files": [
+    "dist/*"
+  ],
+  "private": false,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
+    "build-library": "vue-cli-service build --target lib --name descom-ui ./src/install.js",
     "lint": "vue-cli-service lint"
   },
   "dependencies": {
