@@ -14,8 +14,8 @@
     "nuxt"
   ],
   "license": "MIT",
-  "version": "0.1.0",
-  "main": ".dist/descom-ui.common.js",
+  "version": "0.1.2",
+  "main": ".dist/descom-ui.umd.js",
   "files": [
     "dist/*"
   ],

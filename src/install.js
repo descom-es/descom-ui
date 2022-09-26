@@ -1,16 +1,27 @@
 import HelloWorld from './components/HelloWorld.vue'
 
-const HelloWorldSimple = {
-  install(Vue) {
-    // Let's register our component globally
-    // https://vuejs.org/v2/guide/components-registration.html
-    Vue.component('hello-world', HelloWorld)
-  },
+// Declare install function executed by Vue.use()
+export function install(Vue) {
+  if (install.installed) return
+  install.installed = true
+  Vue.component('HelloWorldSimple', HelloWorld)
 }
 
-// Automatic installation if Vue has been added to the global scope.
-if (typeof window !== 'undefined' && window.Vue) {
-  window.Vue.use(HelloWorldSimple)
+// Create module definition for Vue.use()
+const plugin = {
+  install,
 }
 
-export default HelloWorldSimple
+// Auto-install when vue is found (eg. in browser via <script> tag)
+let GlobalVue = null
+if (typeof window !== 'undefined') {
+  GlobalVue = window.Vue
+} else if (typeof global !== 'undefined') {
+  GlobalVue = global.Vue
+}
+if (GlobalVue) {
+  GlobalVue.use(plugin)
+}
+
+// To allow use as module (npm/webpack/etc.) export component
+export default HelloWorld
