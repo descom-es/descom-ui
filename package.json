@@ -1,6 +1,6 @@
 {
   "name": "descom-ui",
-  "version": "0.2.0",
+  "version": "0.2.2",
   "description": "Vue.js ui components we use at Descom.es",
   "main": "dist/descom-ui.ssr.js",
   "browser": "dist/descom-ui.esm.js",
