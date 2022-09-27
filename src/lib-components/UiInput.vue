@@ -6,7 +6,7 @@
       </label>
     </slot>
 
-    <input :id="id" :value="value" v-bind="$attrs" v-on="listeners" />
+    <input :id="id" :value="value" :ref="id" v-bind="$attrs" v-on="listeners" />
 
     <span v-if="errorMessage" class="error">
       {{ errorMessage }}
@@ -55,7 +55,7 @@ export default {
     },
 
     inputElement() {
-      return this.$el?.querySelector('input')
+      return this.$refs[this.id]
     },
 
     isRequired() {
@@ -83,11 +83,6 @@ export default {
       }, 1)
     },
   },
-
-  // mounted() {
-  //   // this.isValid = this.getisValid()
-  //   // this.errorMessage = this.getErrorMessage()
-  // },
 
   methods: {
     getisValid() {
