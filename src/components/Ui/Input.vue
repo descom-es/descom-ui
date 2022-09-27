@@ -1,12 +1,12 @@
 <template>
-  <div class="ui-input">
+  <div class="ui-input" >
     <slot name="label">
       <label v-if="label" :for="id" :class="{ 'is-required': isRequired }">
         {{ label }}
       </label>
     </slot>
 
-    <input :id="id" :value="value" v-bind="$attrs" v-on="listeners" />
+    <input :id="id" ref="input" :value="value" v-bind="$attrs" v-on="listeners" />
 
     <span v-if="errorMessage" class="error">
       {{ errorMessage }}
@@ -55,7 +55,7 @@ export default {
     },
 
     inputElement() {
-      return this.$el?.querySelector('input')
+      return this.$refs.input?.$el
     },
 
     isRequired() {
