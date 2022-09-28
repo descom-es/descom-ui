@@ -49,6 +49,11 @@ button,
     text-transform: uppercase;
   }
 
+  &--relative {
+    position: relative;
+    overflow: hidden;
+  }
+
   color: white;
   background-color: #007bff;
   &:hover {
