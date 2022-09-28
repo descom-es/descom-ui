@@ -39,11 +39,6 @@ button,
   align-items: center;
   justify-content: center;
 
-  &--relative {
-    position: relative;
-    overflow: hidden;
-  }
-
   border: none;
   border-radius: 0.2em;
 
@@ -55,16 +50,16 @@ button,
   }
 
   color: white;
-  background-color: orange;
+  background-color: #007bff;
   &:hover {
-    background-color: darkorange;
+    background-color: #0069d9;
   }
 
-  outline-color: darkorange;
+  outline-color: none;
   transition: all 0.2s ease-out;
   &:focus,
   &:active {
-    outline: 2px solid darkorange;
+    outline: 2px solid #8ab4f8;
   }
 
   &--clean {
