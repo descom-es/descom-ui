@@ -9,10 +9,16 @@
   "bugs": {
     "url": "https://github.com/descom-es/descom-ui/issues"
   },
-  "author": {
-    "name": "Victor Garcia",
-    "email": "victor@descom.es"
-  },
+  "contributors": [
+    {
+      "name": "Víctor García",
+      "email": "victorgf2011@gmail.com",
+      "url": "https://tortitas.eu"
+    },
+    {
+      "name": "César García"
+    }
+  ],
   "keywords": [
     "vue",
     "vuejs",
