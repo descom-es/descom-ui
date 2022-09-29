@@ -1,0 +1,53 @@
+.ui-input {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5em;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  label {
+    user-select: none;
+    color: #5e5b5c;
+
+    &.is-required::after {
+      content: '*';
+      vertical-align: 25%;
+      font-family: monospace;
+      color: red;
+    }
+  }
+
+  input {
+    display: block;
+    padding: 0.5em;
+    font-size: 1em;
+
+    color: #000;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    outline: none;
+
+    transition: 0.2s outline-width;
+    &:focus {
+      outline: 2px solid #8ab4f8;
+    }
+
+    &:not(:placeholder-shown):invalid,
+    .input--invalid {
+      border-color: #f00;
+    }
+
+    &[aria-busy='true'] {
+      cursor: progress;
+
+      border: 1px solid rgba(204, 204, 204, 0.732);
+    }
+  }
+
+  .validation-error {
+    font-size: 0.85em;
+    color: red;
+    font-family: monospace;
+  }
+}

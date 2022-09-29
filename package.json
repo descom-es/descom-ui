@@ -1,6 +1,6 @@
 {
   "name": "descom-ui",
-  "version": "0.3.5",
+  "version": "0.4.0",
   "description": "Common Vue.js components we use at Descom.es",
   "repository": {
     "type": "git",
@@ -43,8 +43,10 @@
     "@vue/cli-service": "^4.5.13",
     "cross-env": "^7.0.3",
     "minimist": "^1.2.5",
+    "node-sass": "^7.0.3",
     "rimraf": "^3.0.2",
     "rollup": "^2.52.8",
+    "rollup-plugin-styles": "^4.0.0",
     "rollup-plugin-terser": "^7.0.2",
     "rollup-plugin-vue": "^5.1.9",
     "sass-loader": "^10",

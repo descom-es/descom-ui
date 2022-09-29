@@ -71,6 +71,8 @@
 </template>
 
 <script>
+import '../scss/core.scss'
+
 export default {
   name: 'DescomUiSample',
   data() {
