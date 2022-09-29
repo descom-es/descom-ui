@@ -14,7 +14,7 @@
       :ref="id"
       v-bind="$attrs"
       v-on="listeners"
-      @change="inputHandler"
+      @input="inputHandler"
     />
 
     <span v-if="errorMessage" class="validation-error">

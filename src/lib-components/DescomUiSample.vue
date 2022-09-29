@@ -45,12 +45,14 @@
             :loading="loading"
             label="This input is not required"
             placeholder="I'm a placeholder!"
+            v-model="text"
           />
           <br />
           <UiInput
             :loading="loading"
             label="This input is required"
             placeholder="I'm a placeholder!"
+            v-model="text"
             required
           />
           <br />
@@ -58,7 +60,7 @@
             :loading="loading"
             label="This input can't be less than 0"
             type="number"
-            :value="text"
+            v-model="text"
             placeholder="I'm a placeholder!"
             min="0"
           />
