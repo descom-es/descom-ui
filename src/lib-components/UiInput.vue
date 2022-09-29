@@ -6,9 +6,18 @@
       </label>
     </slot>
 
-    <input :id="id" :value="value" :ref="id" v-bind="$attrs" v-on="listeners" />
+    <input
+      :aria-busy="loading"
+      :disabled="loading"
+      :id="id"
+      :value="value"
+      :ref="id"
+      v-bind="$attrs"
+      v-on="listeners"
+      @change="inputHandler"
+    />
 
-    <span v-if="errorMessage" class="error">
+    <span v-if="errorMessage" class="validation-error">
       {{ errorMessage }}
     </span>
   </div>
@@ -33,13 +42,17 @@ export default {
       type: [Array, String],
       default: () => [],
     },
+
+    loading: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
       isValid: null,
       errorMessage: null,
-      dummy: {},
     }
   },
 
@@ -55,7 +68,7 @@ export default {
     },
 
     inputElement() {
-      return this.$refs[this.id]
+      return document.getElementById(this.id)
     },
 
     isRequired() {
@@ -64,13 +77,6 @@ export default {
   },
 
   watch: {
-    value() {
-      setTimeout(() => {
-        this.isValid = this.getisValid()
-        this.errorMessage = this.getErrorMessage()
-      }, 1)
-    },
-
     errors() {
       setTimeout(() => {
         const customErrorMessage = this.errors.length
@@ -78,20 +84,29 @@ export default {
           : ''
 
         this.inputElement.setCustomValidity(customErrorMessage)
-        this.isValid = this.getisValid()
+        this.isValid = this.getIsValid()
         this.errorMessage = this.getErrorMessage()
       }, 1)
     },
   },
 
+  mounted() {
+    console.log('test')
+  },
+
   methods: {
-    getisValid() {
+    inputHandler() {
+      console.log('ASDJAJSD')
+      setTimeout(() => {
+        this.isValid = this.getIsValid()
+        this.errorMessage = this.getErrorMessage()
+      }, 1)
+    },
+
+    getIsValid() {
       if (this.inputElement === undefined) {
         return null
       }
-
-      this.dummy.validity = Object.keys(this.inputElement.validity)
-      this.dummy.validationMessage = this.inputElement.validationMessage
 
       return this.inputElement.validity.valid
     },
@@ -112,6 +127,8 @@ export default {
   display: flex;
   flex-direction: column;
   gap: 0.5em;
+
+  font-family: Arial, Helvetica, sans-serif;
 
   label {
     user-select: none;
@@ -144,6 +161,12 @@ export default {
     &:not(:placeholder-shown):invalid,
     .input--invalid {
       border-color: #f00;
+    }
+
+    &[aria-busy='true'] {
+      cursor: progress;
+
+      border: 1px solid rgba(204, 204, 204, 0.732);
     }
   }
 
