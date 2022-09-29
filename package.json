@@ -1,6 +1,6 @@
 {
   "name": "descom-ui",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Common Vue.js components we use at Descom.es",
   "repository": {
     "type": "git",
@@ -13,6 +13,14 @@
     "name": "Victor Garcia",
     "email": "victor@descom.es"
   },
+  "keywords": [
+    "vue",
+    "vuejs",
+    "components",
+    "ui",
+    "descom"
+  ],
+  "license": "MIT",
   "main": "dist/descom-ui.ssr.js",
   "browser": "dist/descom-ui.esm.js",
   "module": "dist/descom-ui.esm.js",
