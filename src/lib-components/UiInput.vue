@@ -90,13 +90,8 @@ export default {
     },
   },
 
-  mounted() {
-    console.log('test')
-  },
-
   methods: {
     inputHandler() {
-      console.log('ASDJAJSD')
       setTimeout(() => {
         this.isValid = this.getIsValid()
         this.errorMessage = this.getErrorMessage()
