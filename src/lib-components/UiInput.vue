@@ -47,6 +47,11 @@ export default {
       type: Boolean,
       default: false,
     },
+
+    idOverride: {
+      type: String,
+      default: null,
+    },
   },
 
   data() {
@@ -58,7 +63,7 @@ export default {
 
   computed: {
     id() {
-      return this.$attrs.id || `uiinput_${this._uid}`
+      return this.idOverride || `uiinput_${this._uid}`
     },
 
     listeners() {

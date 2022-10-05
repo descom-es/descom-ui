@@ -50,6 +50,7 @@
           <br />
           <UiInput
             :loading="loading"
+            id-override="required"
             label="This input is required"
             placeholder="I'm a placeholder!"
             v-model="text"
@@ -58,6 +59,7 @@
           <br />
           <UiInput
             :loading="loading"
+            id-override="number"
             label="This input can't be less than 0"
             type="number"
             v-model="text"
