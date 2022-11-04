@@ -34,7 +34,6 @@ button,
 
   &--relative {
     position: relative;
-    overflow: hidden;
   }
   &--clean {
     background-color: transparent;
@@ -184,6 +183,10 @@ button,
         transform: translateX(-1.75rem);
       }
     }
+  }
+
+  &--will-load {
+    overflow: hidden;
   }
 
   // COLORS

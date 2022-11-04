@@ -1,6 +1,7 @@
 <template>
   <button
     class="button--relative"
+    :class="{'button--will-load' : willLoad}"
     :aria-busy="loading"
     :disabled="loading"
     v-on="listeners"
@@ -18,13 +19,16 @@ export default {
   props: {
     loading: {
       type: Boolean,
-      default: false,
+      default: null,
     },
   },
 
   computed: {
     listeners() {
       return this.$listeners
+    },
+    willLoad() {
+      return this.loading !== null
     },
   },
 }
