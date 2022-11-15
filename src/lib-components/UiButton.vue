@@ -1,9 +1,9 @@
 <template>
   <button
     class="button--relative"
-    :class="{'button--will-load' : willLoad}"
+    :class="{ 'button--will-load': willLoad }"
     :aria-busy="loading"
-    :disabled="loading"
+    :disabled="loading || disabledOverride"
     v-on="listeners"
   >
     <span>
@@ -14,22 +14,26 @@
 
 <script>
 export default {
-  name: 'UiButton',
+  name: "UiButton",
 
   props: {
     loading: {
       type: Boolean,
       default: null,
     },
+    disabledOverride: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   computed: {
     listeners() {
-      return this.$listeners
+      return this.$listeners;
     },
     willLoad() {
-      return this.loading !== null
+      return this.loading !== null;
     },
   },
-}
+};
 </script>

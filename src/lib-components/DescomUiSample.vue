@@ -26,7 +26,10 @@
           <UiButton class="button--danger" :loading="loading"
             >Click me!</UiButton
           >
-          <UiButton class="button--warning" :loading="loading"
+          <UiButton
+            class="button--warning"
+            :loading="loading"
+            :disabledOverride="true"
             >Click me!</UiButton
           >
           <UiButton class="button--info" :loading="loading">Click me!</UiButton>
@@ -73,17 +76,17 @@
 </template>
 
 <script>
-import '../scss/core.scss'
+import "../scss/core.scss";
 
 export default {
-  name: 'DescomUiSample',
+  name: "DescomUiSample",
   data() {
     return {
       loading: false,
-      text: '',
-    }
+      text: "",
+    };
   },
-}
+};
 </script>
 
 <style scoped lang="scss">
