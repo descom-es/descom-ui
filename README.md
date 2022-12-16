@@ -2,6 +2,18 @@
 
 Common Vue.js components we use at descom.
 
+## Development
+
+Dev server:
+```bash
+npm run serve
+```
+
+Build:
+```bash
+npm run build
+```
+
 ## Components
 
 All components will use the props passed to them as if they were html native attributes. Ej.: `:disabled="true"` will be passed as `disabled="true"` to the input inside the component.

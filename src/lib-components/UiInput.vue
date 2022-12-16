@@ -1,21 +1,17 @@
 <template>
-  <div class="ui-input">
-    <slot name="label">
+  <div class="ui-input" :class="{ 'field': isField }">
+    <slot name="label" v-if="!isField">
       <label v-if="label" :for="id" :class="{ 'is-required': isRequired }">
         {{ label }}
       </label>
     </slot>
 
-    <input
-      :aria-busy="loading"
-      :disabled="loading"
-      :id="id"
-      :value="value"
-      :ref="id"
-      v-bind="$attrs"
-      v-on="listeners"
-      @input="inputHandler"
-    />
+    <input :aria-busy="loading" :disabled="loading" :id="id" :value="value" :ref="id" v-bind="$attrs" v-on="listeners"
+      @input="inputHandler" />
+
+    <label v-if="label && isField" :for="id" :class="{ 'is-required': isRequired }">
+      {{ label }}
+    </label>
 
     <span v-if="errorMessage" class="validation-error">
       {{ errorMessage }}
@@ -36,6 +32,11 @@ export default {
     label: {
       type: String,
       default: null,
+    },
+
+    isField: {
+      type: Boolean,
+      default: false,
     },
 
     errors: {
