@@ -53,12 +53,23 @@ export default {
       type: String,
       default: null,
     },
+
+    autofocus: {
+      type: Boolean,
+      default: false,
+    },
   },
 
   data() {
     return {
       isValid: null,
       errorMessage: null,
+    }
+  },
+
+  mounted() {
+    if (this.autofocus) {
+      this.inputElement.focus()
     }
   },
 

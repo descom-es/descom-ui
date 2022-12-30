@@ -32,8 +32,8 @@
           <UiInput :loading="loading" label="This input is not required" placeholder="I'm a placeholder!"
             v-model="text" />
           <br>
-          <UiInput :loading="loading" label="This input is a field" placeholder="I'm a placeholder!" :isField="true"
-            v-model="text" required />
+          <UiInput autofocus :loading="loading" label="This input is a field" placeholder="I'm a placeholder!"
+            :isField="true" v-model="text" required />
           <br />
           <UiInput :loading="loading" id-override="required" label="This input is required"
             placeholder="I'm a placeholder!" v-model="text" required />
