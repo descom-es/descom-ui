@@ -10,7 +10,6 @@
 <script>
 export default {
   name: "UiButton",
-  inheritAttrs: false,
   props: {
     loading: {
       type: Boolean,
