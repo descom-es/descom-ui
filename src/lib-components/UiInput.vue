@@ -22,7 +22,7 @@
 <script>
 export default {
   name: 'UiInput',
-
+  inheritAttrs: false,
   props: {
     value: {
       type: [String, Number],

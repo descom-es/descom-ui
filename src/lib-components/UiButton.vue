@@ -1,11 +1,6 @@
 <template>
-  <button
-    class="button--relative"
-    :class="{ 'button--will-load': willLoad }"
-    :aria-busy="loading"
-    :disabled="loading || disabledOverride"
-    v-on="listeners"
-  >
+  <button class="button--relative" :class="{ 'button--will-load': willLoad }" :aria-busy="loading"
+    :disabled="loading || disabledOverride" v-on="listeners">
     <span>
       <slot></slot>
     </span>
@@ -15,7 +10,7 @@
 <script>
 export default {
   name: "UiButton",
-
+  inheritAttrs: false,
   props: {
     loading: {
       type: Boolean,
