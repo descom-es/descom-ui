@@ -1,6 +1,6 @@
 {
   "name": "descom-ui",
-  "version": "1.0.0",
+  "version": "0.5.2",
   "description": "Common Vue.js components we use at Descom.es",
   "repository": {
     "type": "git",
