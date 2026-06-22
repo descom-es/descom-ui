@@ -1,12 +1,7 @@
-import Vue from 'vue';
+import { createApp } from 'vue';
 import Dev from './serve.vue';
 // To register individual components where they are used (serve.vue) instead of using the
-// library as a whole, comment/remove this import and it's corresponding "Vue.use" call
+// library as a whole, comment/remove this import and its corresponding "app.use" call
 import DescomUi from '@/entry.esm';
-Vue.use(DescomUi);
 
-Vue.config.productionTip = false;
-
-new Vue({
-  render: (h) => h(Dev),
-}).$mount('#app');
+createApp(Dev).use(DescomUi).mount('#app');

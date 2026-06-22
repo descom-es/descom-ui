@@ -1,33 +1,27 @@
 <template>
   <button class="button--relative" :class="{ 'button--will-load': willLoad }" :aria-busy="loading"
-    :disabled="loading || disabledOverride" v-on="listeners">
+    :disabled="loading || disabledOverride">
     <span>
       <slot></slot>
     </span>
   </button>
 </template>
 
-<script>
-export default {
-  name: "UiButton",
-  props: {
-    loading: {
-      type: Boolean,
-      default: null,
-    },
-    disabledOverride: {
-      type: Boolean,
-      default: false,
-    },
-  },
+<script setup>
+import { computed } from 'vue'
 
-  computed: {
-    listeners() {
-      return this.$listeners;
-    },
-    willLoad() {
-      return this.loading !== null;
-    },
+const props = defineProps({
+  loading: {
+    type: Boolean,
+    default: null,
   },
-};
+  disabledOverride: {
+    type: Boolean,
+    default: false,
+  },
+})
+
+// En Vue 3 los listeners caen por fallthrough al elemento raíz (<button>),
+// por lo que ya no hace falta el computed `listeners` ni `v-on`.
+const willLoad = computed(() => props.loading !== null)
 </script>

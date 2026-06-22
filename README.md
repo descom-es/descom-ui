@@ -2,6 +2,9 @@
 
 Common Vue.js components we use at descom.
 
+> **Vue 3 only.** A partir de la v1.0.0 este paquete requiere **Vue 3** (`vue@^3.5`).
+> Para Vue 2 usa una versión `0.x`.
+
 ## Development
 
 Dev server:
@@ -47,13 +50,24 @@ Example:
 
 ```js
 import { UiInput, UiButton } from 'descom-ui'
-import 'descom-ui/dist/descom-ui.min-default.css'
+import 'descom-ui/dist/descom-ui.css'
 ```
 
-## Note
+Or register every component globally as a plugin:
 
-You may have to set the following env variable to get the package to work:
+```js
+import { createApp } from 'vue'
+import DescomUi from 'descom-ui'
+import 'descom-ui/dist/descom-ui.css'
 
-```bash
-export NODE_OPTIONS=--openssl-legacy-provider
+createApp(App).use(DescomUi).mount('#app')
+```
+
+## Migrating from 0.x (Vue 2)
+
+`UiInput` now uses the Vue 3 `v-model` contract. If you were binding `:value` / `@input`
+manually, switch to `v-model` (it maps to `modelValue` / `update:modelValue` internally):
+
+```html
+<UiInput v-model="text" />
 ```
