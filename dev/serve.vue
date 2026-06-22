@@ -1,14 +1,8 @@
-<script>
-import Vue from 'vue';
+<script setup>
 // Uncomment import and local "components" registration if library is not registered globally.
 // import { DescomUiSample } from '@/entry.esm';
 
-export default Vue.extend({
-  name: 'ServeDev',
-  // components: {
-  //  DescomUiSample,
-  // }
-});
+defineOptions({ name: 'ServeDev' });
 </script>
 
 <template>

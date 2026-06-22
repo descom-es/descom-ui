@@ -6,7 +6,7 @@
       </label>
     </slot>
 
-    <input :aria-busy="loading" :disabled="loading" :id="id" :value="value" :ref="id" v-bind="$attrs" v-on="listeners"
+    <input :aria-busy="loading" :disabled="loading" :id="id" :value="model" ref="inputRef" v-bind="$attrs"
       @input="inputHandler" />
 
     <label v-if="label && isField" :for="id" :class="{ 'is-required': isRequired }">
@@ -19,117 +19,104 @@
   </div>
 </template>
 
-<script>
-export default {
+<script setup>
+import { ref, computed, watch, onMounted, useId, useAttrs } from 'vue'
+
+defineOptions({
   name: 'UiInput',
   inheritAttrs: false,
-  props: {
-    value: {
-      type: [String, Number],
-      default: null,
-    },
+})
 
-    label: {
-      type: String,
-      default: null,
-    },
-
-    isField: {
-      type: Boolean,
-      default: false,
-    },
-
-    errors: {
-      type: [Array, String],
-      default: () => [],
-    },
-
-    loading: {
-      type: Boolean,
-      default: false,
-    },
-
-    idOverride: {
-      type: String,
-      default: null,
-    },
-
-    autofocus: {
-      type: Boolean,
-      default: false,
-    },
+const props = defineProps({
+  label: {
+    type: String,
+    default: null,
   },
 
-  data() {
-    return {
-      isValid: null,
-      errorMessage: null,
-    }
+  isField: {
+    type: Boolean,
+    default: false,
   },
 
-  mounted() {
-    if (this.autofocus) {
-      this.inputElement.focus()
-    }
+  errors: {
+    type: [Array, String],
+    default: () => [],
   },
 
-  computed: {
-    id() {
-      return this.idOverride || `uiinput_${this._uid}`
-    },
-
-    listeners() {
-      return Object.assign({}, this.$listeners, {
-        input: (event) => this.$emit('input', event.target.value),
-      })
-    },
-
-    inputElement() {
-      return document.getElementById(this.id)
-    },
-
-    isRequired() {
-      return this.$attrs.required !== undefined
-    },
+  loading: {
+    type: Boolean,
+    default: false,
   },
 
-  watch: {
-    errors() {
-      setTimeout(() => {
-        const customErrorMessage = this.errors.length
-          ? this.errors.join('\n')
-          : ''
-
-        this.inputElement.setCustomValidity(customErrorMessage)
-        this.isValid = this.getIsValid()
-        this.errorMessage = this.getErrorMessage()
-      }, 1)
-    },
+  idOverride: {
+    type: String,
+    default: null,
   },
 
-  methods: {
-    inputHandler() {
-      setTimeout(() => {
-        this.isValid = this.getIsValid()
-        this.errorMessage = this.getErrorMessage()
-      }, 1)
-    },
-
-    getIsValid() {
-      if (this.inputElement === undefined) {
-        return null
-      }
-
-      return this.inputElement.validity.valid
-    },
-
-    getErrorMessage() {
-      if (this.inputElement === undefined) {
-        return null
-      }
-
-      return this.inputElement.validationMessage
-    },
+  autofocus: {
+    type: Boolean,
+    default: false,
   },
+})
+
+// v-model: sustituye la prop `value` + emit `input` de Vue 2
+const model = defineModel({
+  type: [String, Number],
+  default: null,
+})
+
+const attrs = useAttrs()
+const uid = useId()
+const inputRef = ref(null)
+const isValid = ref(null)
+const errorMessage = ref(null)
+
+const id = computed(() => props.idOverride || uid)
+const isRequired = computed(() => attrs.required !== undefined)
+
+function getIsValid() {
+  if (!inputRef.value) {
+    return null
+  }
+
+  return inputRef.value.validity.valid
 }
+
+function getErrorMessage() {
+  if (!inputRef.value) {
+    return null
+  }
+
+  return inputRef.value.validationMessage
+}
+
+function inputHandler(event) {
+  model.value = event.target.value
+
+  setTimeout(() => {
+    isValid.value = getIsValid()
+    errorMessage.value = getErrorMessage()
+  }, 1)
+}
+
+watch(
+  () => props.errors,
+  () => {
+    setTimeout(() => {
+      const customErrorMessage = props.errors.length
+        ? props.errors.join('\n')
+        : ''
+
+      inputRef.value.setCustomValidity(customErrorMessage)
+      isValid.value = getIsValid()
+      errorMessage.value = getErrorMessage()
+    }, 1)
+  }
+)
+
+onMounted(() => {
+  if (props.autofocus) {
+    inputRef.value.focus()
+  }
+})
 </script>

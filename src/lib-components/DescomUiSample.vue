@@ -46,18 +46,14 @@
   </div>
 </template>
 
-<script>
+<script setup>
+import { ref } from "vue";
 import "../scss/core.scss";
 
-export default {
-  name: "DescomUiSample",
-  data() {
-    return {
-      loading: false,
-      text: "",
-    };
-  },
-};
+defineOptions({ name: "DescomUiSample" });
+
+const loading = ref(false);
+const text = ref("");
 </script>
 
 <style scoped lang="scss">

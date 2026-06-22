@@ -1,17 +1,16 @@
-
 // Import vue components
-import * as components from '@/lib-components/index';
+import * as components from '@/lib-components/index'
 
-// install function executed by Vue.use()
-const install = function installDescomUi(Vue) {
+// install function executed by app.use()
+const install = function installDescomUi(app) {
   Object.entries(components).forEach(([componentName, component]) => {
-    Vue.component(componentName, component);
-  });
-};
+    app.component(componentName, component)
+  })
+}
 
-// Create module definition for Vue.use()
-export default install;
+// Create module definition for app.use()
+export default install
 
 // To allow individual component use, export components
-// each can be registered via Vue.component()
-export * from '@/lib-components/index';
+// each can be registered via app.component()
+export * from '@/lib-components/index'
